@@ -17,7 +17,9 @@ namespace PIV_PF_ProyectoFinal.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            using (testEntities db = new testEntities())
+
+                return View();
         }
 
         public ActionResult Contact()

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PF_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK__USUARIOS__IdRol__60A75C0F" FromRole="ROLES" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCompleto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdRol" Type="Int32" />
+    <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="ROLES" Relationship="Self.FK__USUARIOS__IdRol__60A75C0F" FromRole="USUARIOS" ToRole="ROLES" />
+  </EntityType>
+  <Association Name="FK__USUARIOS__IdRol__60A75C0F">
+    <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ROLES" EntityType="Self.ROLES" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+    <AssociationSet Name="FK__USUARIOS__IdRol__60A75C0F" Association="Self.FK__USUARIOS__IdRol__60A75C0F">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
