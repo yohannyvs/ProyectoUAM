@@ -57,7 +57,7 @@ namespace PIV_PF_ProyectoFinal.Controllers.Acceso
                     Correo = pCorreo,
                     Clave = cifrado.EncriptarAES(pClave),
                     Activo = true,
-                    IdRol = 1
+                    IdRol = 2
                 };
 
                 dbContext.USUARIOS.Add(usuario);
