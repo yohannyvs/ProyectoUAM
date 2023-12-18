@@ -1,0 +1,68 @@
+﻿@model IEnumerable<PIV_PF_ProyectoFinal.USUARIOS>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ROLES.Rol)
+            </th>
+            <th></th>
+        </tr>
+    
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clave)
+                </td>
+                <td>
+                    @if (item.Activo == true)
+                    { <p>✔</p> }
+                    else
+                    { <p>✖</p> }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ROLES.Rol)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.IdUsuario }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdUsuario }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario })
+                </td>
+            </tr>
+        }
+    
+    </table>
+</body>
+</html>

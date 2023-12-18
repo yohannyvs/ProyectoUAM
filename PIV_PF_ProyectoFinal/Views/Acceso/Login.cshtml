@@ -1,0 +1,176 @@
+﻿@model USUARIOS
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml"; ;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu" rel="stylesheet">
+
+    <title>Formulario Login y Registro de Usuarios</title>
+</head>
+<body>
+
+    <!-- Formularios -->
+    <div class="contenedor-formularios">
+        <!-- Links de los formularios -->
+        <ul class="contenedor-tabs" style="border-radius:5px;">
+            <li class="tab tab-segunda active"><a id="aIS" href="#iniciar-sesion">Iniciar Sesión</a></li>
+            <li class="tab tab-primera"><a id="aR" href="#registrarse">Registrarse</a></li>
+        </ul>
+
+        <!-- Contenido de los Formularios -->
+        <div class="contenido-tab">
+
+            <!-- Iniciar Sesion -->
+            <div id="iniciar-sesion">
+                <h1>Iniciar Sesión</h1>
+
+                <div class="contenedor-input">
+                    <label>
+                        Email <span class="req">*</span>
+                    </label>
+                    <input id="txtUsuario" type="text" required>
+                </div>
+
+                <div class="contenedor-input">
+                    <label>
+                        Contraseña <span class="req">*</span>
+                    </label>
+                    <input id="txtClave" type="password" required>
+                </div>
+
+                <button class="button button-block" onclick="Autenticacion();">Iniciar Sesión</button>
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------------->
+
+            <!-- Registrarse -->
+            <div id="registrarse">
+                <h1>Registrarse</h1>
+
+                <div>
+                    <div class="contenedor-input">
+                        <label>
+                            Nombre Completo <span class="req">*</span>
+                        </label>
+                        <input id="txtNombre" type="text" required>
+                    </div>
+                </div>
+                <div class="contenedor-input">
+                    <label>
+                        Email <span class="req">*</span>
+                    </label>
+                    <input id="txtCorreo" type="email" required>
+                </div>
+                <div class="contenedor-input">
+                    <label>
+                        Contraseña <span class="req">*</span>
+                    </label>
+                    <input id="txtClave1" type="password" required>
+                </div>
+
+                <div class="contenedor-input">
+                    <label>
+                        Repetir Contraseña <span class="req">*</span>
+                    </label>
+                    <input id="txtClave2" type="password" required>
+                </div>
+
+                <button class="button button-block" onclick="Registro();">Registrarse</button>
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------------->
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+<script>
+
+    function ValidarRegistro() {
+
+        var clave1 = $("#txtClave1").val();
+        var clave2 = $("#txtClave2").val();
+
+        if (clave1 == clave2) 
+            return true;
+        else
+            return false;
+
+    }
+
+
+    function Registro() {
+
+        if (!ValidarRegistro()) {
+            alert('Verificar contraseña');
+            return;
+        }
+            
+
+        var nombre = $("#txtNombre").val();
+        var correo = $("#txtCorreo").val();
+        var clave = $("#txtClave2").val();
+
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Content("~/Acceso/Registrarse")", // Dirección del método
+            content: "application/json; charset=utf-8", // MetaData
+            data: {
+                pNombre: nombre, pCorreo: correo, pClave: clave  // Se le pasan los parametros al método
+            },
+            success: function (result) {
+
+                if (result == 'True') {
+                    alert('Registro exitoso!!');
+                    $('#aIS').trigger('click');
+                }
+
+            }
+        });
+
+    }
+
+
+    function Autenticacion() {
+
+        var correo = $("#txtUsuario").val();
+        var clave = $("#txtClave").val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Content("~/Acceso/IniciarSesion")", // Dirección del método
+            content: "application/json; charset=utf-8", // MetaData
+            data: {
+                pCorreo: correo, pClave: clave  // Se le pasan los parametros al método
+            },
+            success: function (result) {
+
+                console.log(result);
+
+                if (result == 'True')
+                    window.location.href = "@Url.Content("~/Home/Index")";
+                else
+                    alert('Usuario y/o contraseña incorrecta.');
+
+            }
+        });
+
+    }
+
+</script>
+
