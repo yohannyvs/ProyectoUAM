@@ -28,5 +28,8 @@ namespace PIV_PF_ProyectoFinal
         public virtual DbSet<ROLES> ROLES { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
         public virtual DbSet<FACTURAS> FACTURAS { get; set; }
+        public virtual DbSet<CLIENTES> CLIENTES { get; set; }
+        public virtual DbSet<METODOS_PAGO> METODOS_PAGO { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PIV_PF_ProyectoFinal.CLIENTES>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+<link rel="stylesheet" type="text/css" href="~/Content/estilos.css" />
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-outline-success" })
+</p>
+<table class="table table-dark table-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorreoElectronico)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoElectronico)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdCliente }, new { @class = "btn btn-outline-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdCliente }, new { @class = "btn btn-outline-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdCliente }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -21,5 +21,9 @@ namespace PIV_PF_ProyectoFinal
         public double impuesto { get; set; }
         public double subtotal { get; set; }
         public double total { get; set; }
+        public int idProducto { get; set; }
+    
+        public virtual CLIENTES CLIENTES { get; set; }
+        public virtual METODOS_PAGO METODOS_PAGO { get; set; }
     }
 }

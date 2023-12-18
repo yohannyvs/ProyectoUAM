@@ -1,0 +1,45 @@
+﻿@model PIV_PF_ProyectoFinal.CLIENTES
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-bg-dark p-3">
+    <h3>Eliminar Clientes</h3>
+    <hr />
+    <h1>¿Está seguro de que desea eliminar esto?</h1>
+</div>
+<link rel="stylesheet" type="text/css" href="~/Content/estilos.css" />
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorreoElectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorreoElectronico)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+            @Html.ActionLink(" ", "Index")
+        </div>
+    }
+</div>
