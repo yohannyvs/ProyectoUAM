@@ -136,6 +136,10 @@
     <Compile Include="CLIENTES.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CLIENTES.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\Acceso\AccesoController.cs" />
     <Compile Include="Controllers\Acceso\RolesController.cs" />
     <Compile Include="Controllers\Acceso\UsuariosController.cs" />
@@ -172,6 +176,9 @@
     <Compile Include="ROLES.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="USUARIOS.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -194,6 +201,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\estilos.css" />
     <Content Include="Content\Login.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -247,6 +255,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Details.cshtml" />
