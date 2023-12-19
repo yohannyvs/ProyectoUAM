@@ -60,45 +60,45 @@
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.String,System.String)">
             <summary>Returns the starting position of one expression found within another expression.</summary>
-            <returns>The starting position of  toFind  if it is found in  toSearch .</returns>
-            <param name="toFind">The string expression to be found.</param>
+            <returns>The starting position of  target  if it is found in  toSearch .</returns>
             <param name="toSearch">The string expression to be searched.</param>
+            <param name="target">The string expression to be found.</param>
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.Byte[],System.Byte[])">
             <summary>Returns the starting position of one expression found within another expression.</summary>
-            <returns>The starting position of  toFind  if it is found in  toSearch .</returns>
-            <param name="toFind">The string expression to be found.</param>
+            <returns>The starting position of  target  if it is found in  toSearch .</returns>
             <param name="toSearch">The string expression to be searched.</param>
+            <param name="target">The string expression to be found.</param>
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.String,System.String,System.Nullable{System.Int32})">
             <summary>Returns the starting position of one expression found within another expression.</summary>
-            <returns>The starting position of  toFind  if it is found in  toSearch .</returns>
-            <param name="toFind">The string expression to be found.</param>
+            <returns>The starting position of  target  if it is found in  toSearch .</returns>
             <param name="toSearch">The string expression to be searched.</param>
+            <param name="target">The string expression to be found.</param>
             <param name="startLocation">The character position in  toSearch  where searching begins.</param>
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.Byte[],System.Byte[],System.Nullable{System.Int32})">
             <summary>Returns the starting position of one expression found within another expression.</summary>
-            <returns>The starting position of  toFind  if it is found in  toSearch .</returns>
-            <param name="toFind">The string expression to be found.</param>
+            <returns>The starting position of  target  if it is found in  toSearch .</returns>
             <param name="toSearch">The string expression to be searched.</param>
+            <param name="target">The string expression to be found.</param>
             <param name="startLocation">The character position in  toSearch  where searching begins.</param>
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.String,System.String,System.Nullable{System.Int64})">
             <summary>Returns the starting position of one expression found within another expression.</summary>
             <returns>
-            A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" /> value that is the starting position of  toFind  if it is found in  toSearch .
+            A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" /> value that is the starting position of  target  if it is found in  toSearch .
             </returns>
-            <param name="toFind">The string expression to be found.</param>
             <param name="toSearch">The string expression to be searched.</param>
+            <param name="target">The string expression to be found.</param>
             <param name="startLocation">The character position in  toSearch  where searching begins.</param>
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.Byte[],System.Byte[],System.Nullable{System.Int64})">
             <summary>Returns the starting position of one expression found within another expression.</summary>
-            <returns>The starting position of  toFind  if it is found in  toSearch .</returns>
-            <param name="toFind">The string expression to be found.</param>
+            <returns>The starting position of  target  if it is found in  toSearch .</returns>
             <param name="toSearch">The string expression to be searched.</param>
-            <param name="startLocation">The character position in  toSearch  where searching begins.</param>
+            <param name="target">The string expression to be found.</param>
+            <param name="startLocation">The character position in  toSearch  at which searching begins.</param>
         </member>
         <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Difference(System.String,System.String)">
             <summary>Returns an integer value that indicates the difference between the SOUNDEX values of two character expressions.</summary>
@@ -834,7 +834,404 @@
             <returns>1 if the input expression is a valid date or time value of datetime or smalldatetime data types; otherwise, 0.</returns>
             <param name="arg">The tested value.</param>
         </member>
+<<<<<<<< HEAD:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.SqlServer.xml
         <member name="T:System.Data.Entity.SqlServer.SqlHierarchyIdFunctions">
+========
+        <member name="T:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator">
+            <summary>
+            Provider to convert provider agnostic migration operations into SQL commands
+            that can be run against a Microsoft SQL Server database.
+            </summary>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Collections.Generic.IEnumerable{System.Data.Entity.Migrations.Model.MigrationOperation},System.String)">
+            <summary>
+            Converts a set of migration operations into Microsoft SQL Server specific SQL.
+            </summary>
+            <param name="migrationOperations"> The operations to be converted. </param>
+            <param name="providerManifestToken"> Token representing the version of SQL Server being targeted (i.e. "2005", "2008"). </param>
+            <returns> A list of SQL statements to be executed to perform the migration operations. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GenerateProcedureBody(System.Collections.Generic.ICollection{System.Data.Entity.Core.Common.CommandTrees.DbModificationCommandTree},System.String,System.String)">
+            <summary>
+            Generates the SQL body for a stored procedure.
+            </summary>
+            <param name="commandTrees">The command trees representing the commands for an insert, update or delete operation.</param>
+            <param name="rowsAffectedParameter">The rows affected parameter name.</param>
+            <param name="providerManifestToken">The provider manifest token.</param>
+            <returns>The SQL body for the stored procedure.</returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.UpdateDatabaseOperation)">
+            <summary>
+            Generates the specified update database operation which represents applying a series of migrations.
+            The generated script is idempotent, meaning it contains conditional logic to check if individual migrations 
+            have already been applied and only apply the pending ones.
+            </summary>
+            <param name="updateDatabaseOperation">The update database operation.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.MigrationOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.MigrationOperation"/>.
+            Allows derived providers to handle additional operation types.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="migrationOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.CreateConnection">
+            <summary>
+            Creates an empty connection for the current provider.
+            Allows derived providers to use connection other than <see cref="T:System.Data.SqlClient.SqlConnection"/>.
+            </summary>
+            <returns> An empty connection for the current provider. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.CreateProcedureOperation)">
+            <summary>
+            Generates the specified create procedure operation.
+            </summary>
+            <param name="createProcedureOperation">The create procedure operation.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AlterProcedureOperation)">
+            <summary>
+            Generates the specified alter procedure operation.
+            </summary>
+            <param name="alterProcedureOperation">The alter procedure operation.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropProcedureOperation)">
+            <summary>
+            Generates the specified drop procedure operation.
+            </summary>
+            <param name="dropProcedureOperation">The drop procedure operation.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.CreateTableOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.CreateTableOperation"/>. This method differs from
+            <see cref="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.WriteCreateTable(System.Data.Entity.Migrations.Model.CreateTableOperation)"/> in that it will
+            create the target database schema if it does not already exist.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="createTableOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.WriteCreateTable(System.Data.Entity.Migrations.Model.CreateTableOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.CreateTableOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="createTableOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.WriteCreateTable(System.Data.Entity.Migrations.Model.CreateTableOperation,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+            <summary>
+            Writes CREATE TABLE SQL to the target writer.
+            </summary>
+            <param name="createTableOperation"> The operation to produce SQL for. </param>
+            <param name="writer"> The target writer. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AlterTableOperation)">
+            <summary>
+            Override this method to generate SQL when the definition of a table or its attributes are changed.
+            The default implementation of this method does nothing.
+            </summary>
+            <param name="alterTableOperation"> The operation describing changes to the table. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GenerateMakeSystemTable(System.Data.Entity.Migrations.Model.CreateTableOperation,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+            <summary>
+            Generates SQL to mark a table as a system table.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="createTableOperation"> The table to mark as a system table. </param>
+            <param name="writer"> The <see cref="T:System.Data.Entity.Migrations.Utilities.IndentedTextWriter"/> to write the generated SQL to. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GenerateCreateSchema(System.String)">
+            <summary>
+            Generates SQL to create a database schema.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="schema"> The name of the schema to create. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddForeignKeyOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.AddForeignKeyOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="addForeignKeyOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropForeignKeyOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.DropForeignKeyOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="dropForeignKeyOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.CreateIndexOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.CreateIndexOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="createIndexOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropIndexOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.DropIndexOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="dropIndexOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="addPrimaryKeyOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropPrimaryKeyOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.DropPrimaryKeyOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="dropPrimaryKeyOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddColumnOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.AddColumnOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="addColumnOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropColumnOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.DropColumnOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="dropColumnOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AlterColumnOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.AlterColumnOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="alterColumnOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.DropDefaultConstraint(System.String,System.String,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+            <summary>
+            Call this method to generate SQL that will attempt to drop the default constraint created
+            when a column is created. This method is usually called by code that overrides the creation or
+            altering of columns.
+            </summary>
+            <param name="table">The table to which the constraint applies.</param>
+            <param name="column">The column to which the constraint applies.</param>
+            <param name="writer">The writer to which generated SQL should be written.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropTableOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.DropTableOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="dropTableOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.SqlOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.SqlOperation"/>.
+            Generated SQL should be added using the Statement or StatementBatch methods.
+            </summary>
+            <param name="sqlOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameColumnOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.RenameColumnOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="renameColumnOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameIndexOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.RenameIndexOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="renameIndexOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameTableOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.RenameTableOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="renameTableOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameProcedureOperation)">
+            <summary>
+            Generates the specified rename procedure operation.
+            </summary>
+            <param name="renameProcedureOperation">The rename procedure operation.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.MoveProcedureOperation)">
+            <summary>
+            Generates the specified move procedure operation.
+            </summary>
+            <param name="moveProcedureOperation">The move procedure operation.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.MoveTableOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.MoveTableOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="moveTableOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.ColumnModel,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+            <summary>
+            Generates SQL for the given column model. This method is called by other methods that
+            process columns and can be overridden to change the SQL generated.
+            </summary>
+            <param name="column">The column for which SQL is being generated.</param>
+            <param name="writer">The writer to which generated SQL should be written.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.HistoryOperation)">
+            <summary>
+            Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.HistoryOperation"/>.
+            Generated SQL should be added using the Statement method.
+            </summary>
+            <param name="historyOperation"> The operation to produce SQL for. </param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Byte[])">
+            <summary>
+            Generates SQL to specify a constant byte[] default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Boolean)">
+            <summary>
+            Generates SQL to specify a constant bool default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.DateTime)">
+            <summary>
+            Generates SQL to specify a constant DateTime default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.DateTimeOffset)">
+            <summary>
+            Generates SQL to specify a constant DateTimeOffset default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Guid)">
+            <summary>
+            Generates SQL to specify a constant Guid default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.String)">
+            <summary>
+            Generates SQL to specify a constant string default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.TimeSpan)">
+            <summary>
+            Generates SQL to specify a constant TimeSpan default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Spatial.DbGeography)">
+            <summary>
+            Generates SQL to specify a constant geogrpahy default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Spatial.DbGeometry)">
+            <summary>
+            Generates SQL to specify a constant geometry default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Object)">
+            <summary>
+            Generates SQL to specify a constant default value being set on a column.
+            This method just generates the actual value, not the SQL to set the default value.
+            </summary>
+            <param name="defaultValue"> The value to be set. </param>
+            <returns> SQL representing the default value. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.BuildColumnType(System.Data.Entity.Migrations.Model.ColumnModel)">
+            <summary>
+            Generates SQL to specify the data type of a column.
+            This method just generates the actual type, not the SQL to create the column.
+            </summary>
+            <param name="columnModel"> The definition of the column. </param>
+            <returns> SQL representing the data type. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Name(System.String)">
+            <summary>
+            Generates a quoted name. The supplied name may or may not contain the schema.
+            </summary>
+            <param name="name"> The name to be quoted. </param>
+            <returns> The quoted name. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Quote(System.String)">
+            <summary>
+            Quotes an identifier for SQL Server.
+            </summary>
+            <param name="identifier"> The identifier to be quoted. </param>
+            <returns> The quoted identifier. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Statement(System.String,System.Boolean,System.String)">
+            <summary>
+            Adds a new Statement to be executed against the database.
+            </summary>
+            <param name="sql"> The statement to be executed. </param>
+            <param name="suppressTransaction"> Gets or sets a value indicating whether this statement should be performed outside of the transaction scope that is used to make the migration process transactional. If set to true, this operation will not be rolled back if the migration process fails. </param>
+            <param name="batchTerminator">The batch terminator for the database provider.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Writer">
+            <summary>
+            Gets a new <see cref="T:System.Data.Entity.Migrations.Utilities.IndentedTextWriter"/> that can be used to build SQL.
+            This is just a helper method to create a writer. Writing to the writer will
+            not cause SQL to be registered for execution. You must pass the generated
+            SQL to the Statement method.
+            </summary>
+            <returns> An empty text writer to use for SQL generation. </returns>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Statement(System.Data.Entity.Migrations.Utilities.IndentedTextWriter,System.String)">
+            <summary>
+            Adds a new Statement to be executed against the database.
+            </summary>
+            <param name="writer"> The writer containing the SQL to be executed. </param>
+            <param name="batchTerminator">The batch terminator for the database provider.</param>
+        </member>
+        <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.StatementBatch(System.String,System.Boolean)">
+            <summary>
+            Breaks sql string into one or more statements, handling T-SQL utility statements as necessary.
+            </summary>
+            <param name="sqlBatch"> The SQL to split into one ore more statements to be executed. </param>
+            <param name="suppressTransaction"> Gets or sets a value indicating whether this statement should be performed outside of the transaction scope that is used to make the migration process transactional. If set to true, this operation will not be rolled back if the migration process fails. </param>
+        </member>
+        <member name="P:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GuidColumnDefault">
+            <summary>
+            Returns the column default value to use for store-generated GUID columns when
+            no default value is explicitly specified in the migration.
+            Returns newsequentialid() for on-premises SQL Server 2005 and later.
+            Returns newid() for SQL Azure.
+            </summary>
+            <value>Either newsequentialid() or newid() as described above.</value>
+        </member>
+        <member name="T:System.Data.Entity.SqlServer.SqlSpatialFunctions">
+>>>>>>>> main:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.SqlServer.xml
             <summary>
             Contains function stubs that expose SqlServer methods in Linq to Entities.
             </summary>
@@ -888,12 +1285,6 @@
             <summary>Converts the canonical string representation of a hierarchyid to a hierarchyid value.</summary>
             <returns>Hierarchyid value.</returns>
             <param name="input">input</param>
-        </member>
-        <member name="M:System.Data.Entity.SqlServer.SqlProviderManifest.SupportsParameterOptimizationInSchemaQueries">
-            <summary>
-            Indicates if the provider supports the parameter optimization described in EntityFramework6 GitHub issue #195.
-            </summary>
-            <returns><c>True</c> since this provider supports the parameter optimization.</returns>
         </member>
         <member name="T:System.Data.Entity.SqlServer.SqlProviderServices">
             <summary>
@@ -1065,12 +1456,12 @@
             Determines whether the database for the given connection exists.
             There are three cases:
             1.  Initial Catalog = X, AttachDBFilename = null:   (SELECT Count(*) FROM sys.databases WHERE [name]= X) > 0
-            2.  Initial Catalog = X, AttachDBFilename = F:      if (SELECT Count(*) FROM sys.databases WHERE [name]= X) > 0 then <c>true</c>,
+            2.  Initial Catalog = X, AttachDBFilename = F:      if (SELECT Count(*) FROM sys.databases WHERE [name]= X) >  true,
             if not, try to open the connection and then return (SELECT Count(*) FROM sys.databases WHERE [name]= X) > 0
             3.  Initial Catalog = null, AttachDBFilename = F:   Try to open the connection. If that succeeds the result is true, otherwise
-            if the there are no databases corresponding to the given file return <c>false</c>, otherwise throw.
+            if the there are no databases corresponding to the given file return false, otherwise throw.
             Note: We open the connection to cover the scenario when the mdf exists, but is not attached.
-            Given that opening the connection would auto-attach it, it would not be appropriate to return <c>false</c> in this case.
+            Given that opening the connection would auto-attach it, it would not be appropriate to return false in this case.
             Also note that checking for the existence of the file does not work for a remote server.  (Dev11 #290487)
             For further details on the behavior when AttachDBFilename is specified see Dev10# 188936
             </summary>
@@ -1084,12 +1475,12 @@
             Determines whether the database for the given connection exists.
             There are three cases:
             1.  Initial Catalog = X, AttachDBFilename = null:   (SELECT Count(*) FROM sys.databases WHERE [name]= X) > 0
-            2.  Initial Catalog = X, AttachDBFilename = F:      if (SELECT Count(*) FROM sys.databases WHERE [name]= X) > 0 then <c>true</c>,
+            2.  Initial Catalog = X, AttachDBFilename = F:      if (SELECT Count(*) FROM sys.databases WHERE [name]= X) >  true,
             if not, try to open the connection and then return (SELECT Count(*) FROM sys.databases WHERE [name]= X) > 0
             3.  Initial Catalog = null, AttachDBFilename = F:   Try to open the connection. If that succeeds the result is true, otherwise
-            if the there are no databases corresponding to the given file return <c>false</c>, otherwise throw.
+            if the there are no databases corresponding to the given file return false, otherwise throw.
             Note: We open the connection to cover the scenario when the mdf exists, but is not attached.
-            Given that opening the connection would auto-attach it, it would not be appropriate to return <c>false</c> in this case.
+            Given that opening the connection would auto-attach it, it would not be appropriate to return false in this case.
             Also note that checking for the existence of the file does not work for a remote server.  (Dev11 #290487)
             For further details on the behavior when AttachDBFilename is specified see Dev10# 188936
             </summary>
@@ -1113,6 +1504,7 @@
             <param name="commandTimeout"> Timeout for internal commands. </param>
             <param name="storeItemCollection"> Item Collection. </param>
         </member>
+<<<<<<<< HEAD:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.SqlServer.xml
         <member name="M:System.Data.Entity.SqlServer.SqlProviderServices.CloneDbConnection(System.Data.Common.DbConnection,System.Data.Common.DbProviderFactory)">
             <summary>
             Clones the connection.
@@ -1122,6 +1514,9 @@
             <returns>Cloned connection</returns>
         </member>
         <member name="T:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator">
+========
+        <member name="P:System.Data.Entity.SqlServer.SqlProviderServices.Instance">
+>>>>>>>> main:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.SqlServer.xml
             <summary>
             Provider to convert provider agnostic migration operations into SQL commands
             that can be run against a Microsoft SQL Server database.
@@ -1534,6 +1929,7 @@
             Contains function stubs that expose SqlServer methods in Linq to Entities.
             </summary>
         </member>
+<<<<<<<< HEAD:packages/EntityFramework.6.4.4/lib/net40/EntityFramework.SqlServer.xml
         <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.PointGeography(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
             <summary>Constructs a geography instance representing a Point instance from its x and y values and a spatial reference ID (SRID). </summary>
             <returns>The constructed geography instance.</returns>
@@ -1639,6 +2035,20 @@
             </returns>
             <param name="geometryValue">The geometry value.</param>
             <param name="tolerance">The tolerance to input to the Douglas-Peucker algorithm. tolerance must be a positive number.</param>
+========
+        <member name="P:System.Data.Entity.SqlServer.SqlProviderServices.TruncateDecimalsToScale">
+            <summary>
+            Set this flag to false to prevent <see cref="T:System.Decimal"/> values from being truncated to
+            the scale (number of decimal places) defined for the column. The default value is true,
+            indicating that decimal values will be truncated, in order to prevent breaking existing
+            applications that depend on this behavior.
+            </summary>
+            <remarks>
+            With this flag set to true <see cref="T:System.Data.SqlClient.SqlParameter"/> objects are created with their Scale
+            properties set. When this flag is set to false then the Scale properties are not set, meaning
+            that the truncation behavior of SqlParameter is avoided.
+            </remarks>
+>>>>>>>> main:packages/EntityFramework.6.1.3/lib/net40/EntityFramework.SqlServer.xml
         </member>
         <member name="T:System.Data.Entity.SqlServer.SqlSpatialServices">
             <summary>
