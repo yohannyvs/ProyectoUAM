@@ -1,0 +1,37 @@
+﻿@model PIV_PF_ProyectoFinal.CLIENTES
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ <div class="text-bg-dark p-3">
+    <h3>Detalles Clientes</h3>
+ </div>
+<link rel="stylesheet" type="text/css" href="~/Content/estilos.css" />
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+             @Html.DisplayNameFor(model => model.NombreCliente)
+           
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorreoElectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorreoElectronico)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCliente }, new { @class = "btn btn-outline-warning" }) |
+    @Html.ActionLink(" ", "Index")
+</p>

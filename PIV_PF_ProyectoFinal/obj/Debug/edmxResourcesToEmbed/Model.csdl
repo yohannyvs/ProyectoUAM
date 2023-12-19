@@ -41,5 +41,83 @@
       <End Role="ROLES" EntitySet="ROLES" />
       <End Role="USUARIOS" EntitySet="USUARIOS" />
     </AssociationSet>
+    <EntitySet Name="FACTURAS" EntityType="PF_Model.FACTURAS" />
+    <EntitySet Name="CLIENTES" EntityType="PF_Model.CLIENTES" />
+    <EntitySet Name="METODOS_PAGO" EntityType="PF_Model.METODOS_PAGO" />
+    <EntitySet Name="sysdiagrams" EntityType="PF_Model.sysdiagrams" />
+    <AssociationSet Name="FK_CLIENTES_ID" Association="PF_Model.FK_CLIENTES_ID">
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+      <End Role="FACTURAS" EntitySet="FACTURAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_METODOS_PAGO_ID" Association="PF_Model.FK_METODOS_PAGO_ID">
+      <End Role="METODOS_PAGO" EntitySet="METODOS_PAGO" />
+      <End Role="FACTURAS" EntitySet="FACTURAS" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="FACTURAS">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="idMetodoPago" Type="Int32" Nullable="false" />
+    <Property Name="impuesto" Type="Double" Nullable="false" />
+    <Property Name="subtotal" Type="Double" Nullable="false" />
+    <Property Name="total" Type="Double" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CLIENTES" Relationship="PF_Model.FK_CLIENTES_ID" FromRole="FACTURAS" ToRole="CLIENTES" />
+    <NavigationProperty Name="METODOS_PAGO" Relationship="PF_Model.FK_METODOS_PAGO_ID" FromRole="FACTURAS" ToRole="METODOS_PAGO" />
+  </EntityType>
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCliente" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FACTURAS" Relationship="PF_Model.FK_CLIENTES_ID" FromRole="CLIENTES" ToRole="FACTURAS" />
+  </EntityType>
+  <EntityType Name="METODOS_PAGO">
+    <Key>
+      <PropertyRef Name="idMetodoPago" />
+    </Key>
+    <Property Name="idMetodoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="metodoPago" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FACTURAS" Relationship="PF_Model.FK_METODOS_PAGO_ID" FromRole="METODOS_PAGO" ToRole="FACTURAS" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_CLIENTES_ID">
+    <End Type="PF_Model.CLIENTES" Role="CLIENTES" Multiplicity="1" />
+    <End Type="PF_Model.FACTURAS" Role="FACTURAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTES">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="FACTURAS">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_METODOS_PAGO_ID">
+    <End Type="PF_Model.METODOS_PAGO" Role="METODOS_PAGO" Multiplicity="1" />
+    <End Type="PF_Model.FACTURAS" Role="FACTURAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="METODOS_PAGO">
+        <PropertyRef Name="idMetodoPago" />
+      </Principal>
+      <Dependent Role="FACTURAS">
+        <PropertyRef Name="idMetodoPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

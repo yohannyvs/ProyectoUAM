@@ -5,9 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="60d007cbfd6141db85aeeeff4add80cd" Name="Diagram1">
-        <EntityTypeShape EntityType="PF_Model.ROLES" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PF_Model.USUARIOS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PF_Model.ROLES" Width="1.5" PointX="1.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PF_Model.USUARIOS" Width="1.5" PointX="4.625" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="PF_Model.FK__USUARIOS__IdRol__60A75C0F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PF_Model.FACTURAS" Width="1.5" PointX="1.25" PointY="3.625" />
+        <EntityTypeShape EntityType="PF_Model.CLIENTES" Width="1.5" PointX="1.25" PointY="8" />
+        <EntityTypeShape EntityType="PF_Model.METODOS_PAGO" Width="1.5" PointX="1.25" PointY="10.625" />
+        <EntityTypeShape EntityType="PF_Model.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.75" />
+        <AssociationConnector Association="PF_Model.FK_CLIENTES_ID" />
+        <AssociationConnector Association="PF_Model.FK_METODOS_PAGO_ID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
