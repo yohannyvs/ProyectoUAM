@@ -2,16 +2,19 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
+ <div class="text-bg-dark p-3">
+    <h3>Detalles Clientes</h3>
+ </div>
+<link rel="stylesheet" type="text/css" href="~/Content/estilos.css" />
 
 <div>
-    <h4>CLIENTES</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NombreCliente)
+             @Html.DisplayNameFor(model => model.NombreCliente)
+           
         </dt>
 
         <dd>
@@ -29,6 +32,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCliente }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCliente }, new { @class = "btn btn-outline-warning" }) |
+    @Html.ActionLink(" ", "Index")
 </p>

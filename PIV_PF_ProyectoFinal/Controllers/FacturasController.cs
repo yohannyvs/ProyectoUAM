@@ -53,15 +53,16 @@ namespace PIV_PF_ProyectoFinal.Controllers
     }
 }
 
-/*
+/* 
     // GET: Facturas
     public ActionResult Index()
     {
-        var fACTURAS = db.FACTURAS.Include(f => f.CLIENTES).Include(f => f.METODOS_PAGO).Include(f => f.PRODUCTOS);
-        return View(fACTURAS.ToList());
+        var fACTURAS = db.FACTURAS.Include(f => f.CLIENTES);
+        return View(fACTURAS);
     }
 
-    // GET: Facturas/Details/5
+
+   // GET: Facturas/Details/5
     public ActionResult Details(int? id)
     {
         if (id == null)

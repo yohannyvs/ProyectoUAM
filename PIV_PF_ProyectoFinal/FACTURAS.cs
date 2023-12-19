@@ -14,8 +14,6 @@ namespace PIV_PF_ProyectoFinal
     
     public partial class FACTURAS
     {
-        internal List<PRODUCTOS> ProductosDisponibles;
-
         public int idFactura { get; set; }
         public System.DateTime fecha { get; set; }
         public int idCliente { get; set; }
