@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PF_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORIA_PRODUCTO">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="CLIENTES">
     <Key>
       <PropertyRef Name="IdCliente" />
@@ -28,6 +35,18 @@
     <Property Name="idMetodoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="metodoPago" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreProducto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DescripcionProducto" Type="varchar" MaxLength="500" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="money" Nullable="false" />
+    <Property Name="IdCategoria" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
   <EntityType Name="ROLES">
     <Key>
       <PropertyRef Name="IdRol" />
@@ -36,16 +55,6 @@
     <Property Name="Rol" Type="varchar" MaxLength="60" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" />
     <Property Name="Activo" Type="bit" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="USUARIOS">
     <Key>
@@ -94,12 +103,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PRODUCTOS_CATEGORIA_PRODUCTO">
+    <End Role="CATEGORIA_PRODUCTO" Type="Self.CATEGORIA_PRODUCTO" Multiplicity="1" />
+    <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA_PRODUCTO">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="PRODUCTOS">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PF_ModelStoreContainer">
+    <EntitySet Name="CATEGORIA_PRODUCTO" EntityType="Self.CATEGORIA_PRODUCTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FACTURAS" EntityType="Self.FACTURAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="METODOS_PAGO" EntityType="Self.METODOS_PAGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__USUARIOS__IdRol__60A75C0F" Association="Self.FK__USUARIOS__IdRol__60A75C0F">
       <End Role="ROLES" EntitySet="ROLES" />
@@ -112,6 +134,10 @@
     <AssociationSet Name="FK_METODOS_PAGO_ID" Association="Self.FK_METODOS_PAGO_ID">
       <End Role="METODOS_PAGO" EntitySet="METODOS_PAGO" />
       <End Role="FACTURAS" EntitySet="FACTURAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTOS_CATEGORIA_PRODUCTO" Association="Self.FK_PRODUCTOS_CATEGORIA_PRODUCTO">
+      <End Role="CATEGORIA_PRODUCTO" EntitySet="CATEGORIA_PRODUCTO" />
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

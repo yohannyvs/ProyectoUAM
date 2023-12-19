@@ -8,13 +8,16 @@
         <EntityTypeShape EntityType="PF_Model.ROLES" Width="1.5" PointX="1.875" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PF_Model.USUARIOS" Width="1.5" PointX="4.625" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="PF_Model.FK__USUARIOS__IdRol__60A75C0F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PF_Model.FACTURAS" Width="1.5" PointX="1.25" PointY="3.625" />
-        <EntityTypeShape EntityType="PF_Model.CLIENTES" Width="1.5" PointX="1.25" PointY="8" />
-        <EntityTypeShape EntityType="PF_Model.METODOS_PAGO" Width="1.5" PointX="1.25" PointY="10.625" />
-        <EntityTypeShape EntityType="PF_Model.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="PF_Model.CLIENTES" Width="1.5" PointX="7.375" PointY="0.875" />
+        <EntityTypeShape EntityType="PF_Model.METODOS_PAGO" Width="1.5" PointX="5.25" PointY="4.125" />
         <AssociationConnector Association="PF_Model.FK_CLIENTES_ID" />
         <AssociationConnector Association="PF_Model.FK_METODOS_PAGO_ID" />
-      </Diagram>
+        <EntityTypeShape EntityType="PF_Model.CATEGORIA_PRODUCTO" Width="1.5" PointX="0.5" PointY="4.25" />
+        <EntityTypeShape EntityType="PF_Model.PRODUCTOS" Width="1.5" PointX="2.75" PointY="3.875" />
+        <AssociationConnector Association="PF_Model.FK_PRODUCTOS_CATEGORIA_PRODUCTO" />
+        <EntityTypeShape EntityType="PF_Model.FACTURAS" Width="1.5" PointX="7.625" PointY="3.375" />
+        <EntityTypeShape EntityType="PF_Model.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

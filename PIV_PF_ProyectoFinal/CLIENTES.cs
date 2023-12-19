@@ -11,8 +11,7 @@ namespace PIV_PF_ProyectoFinal
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CLIENTES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +19,9 @@ namespace PIV_PF_ProyectoFinal
         {
             this.FACTURAS = new HashSet<FACTURAS>();
         }
-
-        [Display(Name ="Id")]
+    
         public int IdCliente { get; set; }
-
-        [Display(Name = "NombreCliente")]
         public string NombreCliente { get; set; }
-
-        [Display(Name = "CorreoElectronico")]
         public string CorreoElectronico { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
