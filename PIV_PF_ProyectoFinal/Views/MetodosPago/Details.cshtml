@@ -1,0 +1,26 @@
+﻿@model PIV_PF_ProyectoFinal.METODOS_PAGO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>METODOS_PAGO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.metodoPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.metodoPago)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idMetodoPago }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -46,6 +46,11 @@ namespace PIV_PF_ProyectoFinal.Controllers.Acceso
 
         }
 
+        public ActionResult CerrarSesion()
+        {
+            return View();
+        }
+
         [HttpPost]
         public bool Registrarse(string pNombre, string pCorreo, string pClave)
         {

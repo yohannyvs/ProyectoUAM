@@ -25,5 +25,6 @@ namespace PIV_PF_ProyectoFinal
     
         public virtual CLIENTES CLIENTES { get; set; }
         public virtual METODOS_PAGO METODOS_PAGO { get; set; }
+        public virtual PRODUCTOS PRODUCTOS { get; set; }
     }
 }

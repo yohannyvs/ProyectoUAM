@@ -1,0 +1,74 @@
+﻿@model PIV_PF_ProyectoFinal.FACTURAS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FACTURAS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.impuesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.impuesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subtotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subtotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTES.NombreCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTES.NombreCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.METODOS_PAGO.metodoPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.METODOS_PAGO.metodoPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCTOS.NombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCTOS.NombreProducto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idFactura }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

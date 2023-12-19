@@ -20,7 +20,7 @@
       <PropertyRef Name="idFactura" />
     </Key>
     <Property Name="idFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="fecha" Type="date" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
     <Property Name="idCliente" Type="int" Nullable="false" />
     <Property Name="idMetodoPago" Type="int" Nullable="false" />
     <Property Name="impuesto" Type="float" Nullable="false" />
@@ -55,6 +55,16 @@
     <Property Name="Rol" Type="varchar" MaxLength="60" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" />
     <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="USUARIOS">
     <Key>
@@ -115,6 +125,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PRODUCTOS_ID">
+    <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+    <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOS">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="FACTURAS">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PF_ModelStoreContainer">
     <EntitySet Name="CATEGORIA_PRODUCTO" EntityType="Self.CATEGORIA_PRODUCTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
@@ -122,6 +144,7 @@
     <EntitySet Name="METODOS_PAGO" EntityType="Self.METODOS_PAGO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__USUARIOS__IdRol__60A75C0F" Association="Self.FK__USUARIOS__IdRol__60A75C0F">
       <End Role="ROLES" EntitySet="ROLES" />
@@ -138,6 +161,10 @@
     <AssociationSet Name="FK_PRODUCTOS_CATEGORIA_PRODUCTO" Association="Self.FK_PRODUCTOS_CATEGORIA_PRODUCTO">
       <End Role="CATEGORIA_PRODUCTO" EntitySet="CATEGORIA_PRODUCTO" />
       <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTOS_ID" Association="Self.FK_PRODUCTOS_ID">
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+      <End Role="FACTURAS" EntitySet="FACTURAS" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -17,6 +17,7 @@
         <AssociationConnector Association="PF_Model.FK_PRODUCTOS_CATEGORIA_PRODUCTO" />
         <EntityTypeShape EntityType="PF_Model.FACTURAS" Width="1.5" PointX="7.625" PointY="3.375" />
         <EntityTypeShape EntityType="PF_Model.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.75" />
+        <AssociationConnector Association="PF_Model.FK_PRODUCTOS_ID" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

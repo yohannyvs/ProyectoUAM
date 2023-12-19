@@ -1,0 +1,102 @@
+﻿@model PIV_PF_ProyectoFinal.FACTURAS
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Registrar venta</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <br />
+        @Html.LabelFor(model => model.fecha, "Fecha de la transacción", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @value = ViewBag.FechaActual } })
+            @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+        </div>
+
+        <br />
+        @Html.LabelFor(model => model.idCliente, "Nombre del cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("idCliente", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.idCliente, "", new { @class = "text-danger" })
+        </div>
+
+        <br />
+        @Html.LabelFor(model => model.idMetodoPago, "Método de pago", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("idMetodoPago", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.idMetodoPago, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+
+
+            <br />
+            <label class="control-label col-md-2">Agregar producto:</label>
+            <div class="col-md-4">
+                <input type="text" id="addProduct" class="form-control" readonly/>
+            </div>
+            <div class="col-md-2">
+                <br />
+                <button type="button" id="btnAddProduct" class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+
+        <table class="table" id="productosDisponibles">
+            <thead>
+                <tr>
+                    <th>Nombre del producto</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var producto in ViewBag.ProductosDisponibles)
+                {
+                    <tr>
+                        <td>@producto.NombreProducto</td>
+                        <td>@producto.DescripcionProducto</td>
+                        <td>@producto.Cantidad</td>
+                        <td>@producto.Precio</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $("#productosDisponibles tbody tr").on("click", function () {
+                var nombreProducto = $(this).find("td:first").text();  // Obtener el texto de la primera celda (nombre del producto)
+                $("#addProduct").val(nombreProducto);
+            });
+
+            $("#btnAddProduct").on("click", function () {
+                var searchText = $("#addProduct").val();
+
+                // Realizar una solicitud al controlador para obtener productos
+                $.get('@Url.Action("BuscarProductos", "TuControlador")', { filtro: searchText }, function (data) {
+                    // Limpiar y actualizar la lista de productos
+                    $("#Productos").empty();
+                    $.each(data, function (index, item) {
+                        $("#Productos").append($('<option>', {
+                            value: item.IdProducto,
+                            text: item.NombreProducto
+                        }));
+                    });
+                });
+            });
+
+        });
+    </script>
+}

@@ -9,7 +9,6 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <--></-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             @Html.ActionLink("La Farmacia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -20,13 +19,14 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     @*@<li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                    <li>@Html.ActionLink("CLIENTES", "Index", "Clientes", new { area = "" }, new { @class = "nav-link" })</li>
+        <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+        <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Roles", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Categorias", "Index", "CATEGORIA_PRODUCTO", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Productos", "Index", "PRODUCTOS", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Facturas", "Create", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </nav>

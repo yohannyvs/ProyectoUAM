@@ -32,5 +32,6 @@ namespace PIV_PF_ProyectoFinal
         public virtual DbSet<METODOS_PAGO> METODOS_PAGO { get; set; }
         public virtual DbSet<CATEGORIA_PRODUCTO> CATEGORIA_PRODUCTO { get; set; }
         public virtual DbSet<PRODUCTOS> PRODUCTOS { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
