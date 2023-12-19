@@ -41,5 +41,111 @@
       <End Role="ROLES" EntitySet="ROLES" />
       <End Role="USUARIOS" EntitySet="USUARIOS" />
     </AssociationSet>
+    <EntitySet Name="CLIENTES" EntityType="PF_Model.CLIENTES" />
+    <EntitySet Name="FACTURAS" EntityType="PF_Model.FACTURAS" />
+    <EntitySet Name="METODOS_PAGO" EntityType="PF_Model.METODOS_PAGO" />
+    <AssociationSet Name="FK_CLIENTES_ID" Association="PF_Model.FK_CLIENTES_ID">
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+      <End Role="FACTURAS" EntitySet="FACTURAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_METODOS_PAGO_ID" Association="PF_Model.FK_METODOS_PAGO_ID">
+      <End Role="METODOS_PAGO" EntitySet="METODOS_PAGO" />
+      <End Role="FACTURAS" EntitySet="FACTURAS" />
+    </AssociationSet>
+    <EntitySet Name="CATEGORIA_PRODUCTO" EntityType="PF_Model.CATEGORIA_PRODUCTO" />
+    <EntitySet Name="PRODUCTOS" EntityType="PF_Model.PRODUCTOS" />
+    <AssociationSet Name="FK_PRODUCTOS_CATEGORIA_PRODUCTO" Association="PF_Model.FK_PRODUCTOS_CATEGORIA_PRODUCTO">
+      <End Role="CATEGORIA_PRODUCTO" EntitySet="CATEGORIA_PRODUCTO" />
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCliente" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FACTURAS" Relationship="PF_Model.FK_CLIENTES_ID" FromRole="CLIENTES" ToRole="FACTURAS" />
+  </EntityType>
+  <EntityType Name="FACTURAS">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="idMetodoPago" Type="Int32" Nullable="false" />
+    <Property Name="impuesto" Type="Double" Nullable="false" />
+    <Property Name="subtotal" Type="Double" Nullable="false" />
+    <Property Name="total" Type="Double" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CLIENTES" Relationship="PF_Model.FK_CLIENTES_ID" FromRole="FACTURAS" ToRole="CLIENTES" />
+    <NavigationProperty Name="METODOS_PAGO" Relationship="PF_Model.FK_METODOS_PAGO_ID" FromRole="FACTURAS" ToRole="METODOS_PAGO" />
+  </EntityType>
+  <EntityType Name="METODOS_PAGO">
+    <Key>
+      <PropertyRef Name="idMetodoPago" />
+    </Key>
+    <Property Name="idMetodoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="metodoPago" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FACTURAS" Relationship="PF_Model.FK_METODOS_PAGO_ID" FromRole="METODOS_PAGO" ToRole="FACTURAS" />
+  </EntityType>
+  <Association Name="FK_CLIENTES_ID">
+    <End Type="PF_Model.CLIENTES" Role="CLIENTES" Multiplicity="1" />
+    <End Type="PF_Model.FACTURAS" Role="FACTURAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTES">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="FACTURAS">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_METODOS_PAGO_ID">
+    <End Type="PF_Model.METODOS_PAGO" Role="METODOS_PAGO" Multiplicity="1" />
+    <End Type="PF_Model.FACTURAS" Role="FACTURAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="METODOS_PAGO">
+        <PropertyRef Name="idMetodoPago" />
+      </Principal>
+      <Dependent Role="FACTURAS">
+        <PropertyRef Name="idMetodoPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CATEGORIA_PRODUCTO">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCategoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTOS" Relationship="PF_Model.FK_PRODUCTOS_CATEGORIA_PRODUCTO" FromRole="CATEGORIA_PRODUCTO" ToRole="PRODUCTOS" />
+  </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DescripcionProducto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CATEGORIA_PRODUCTO" Relationship="PF_Model.FK_PRODUCTOS_CATEGORIA_PRODUCTO" FromRole="PRODUCTOS" ToRole="CATEGORIA_PRODUCTO" />
+  </EntityType>
+  <Association Name="FK_PRODUCTOS_CATEGORIA_PRODUCTO">
+    <End Type="PF_Model.CATEGORIA_PRODUCTO" Role="CATEGORIA_PRODUCTO" Multiplicity="1" />
+    <End Type="PF_Model.PRODUCTOS" Role="PRODUCTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA_PRODUCTO">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="PRODUCTOS">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
